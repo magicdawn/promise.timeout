@@ -1,0 +1,31 @@
+{
+  "name": "promise.timeout",
+  "version": "0.0.1",
+  "description": "add timeout support for async function",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magicdawn/promise.timeout.git"
+  },
+  "keywords": [
+    "promise",
+    "timeout",
+    "async"
+  ],
+  "author": "magicdawn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/magicdawn/promise.timeout/issues"
+  },
+  "homepage": "https://github.com/magicdawn/promise.timeout#readme",
+  "devDependencies": {
+    "coveralls": "^2.11.9",
+    "eslint": "^2.9.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "should": "^8.3.1"
+  }
+}
