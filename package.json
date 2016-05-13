@@ -4,7 +4,8 @@
   "description": "add timeout support for async function",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test-cov": "istanbul cover _mocha -- -u exports"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
     "istanbul": "^0.4.3",
     "mocha": "^2.4.5",
     "should": "^8.3.1"
+  },
+  "dependencies": {
+    "co-mocha": "^1.1.2"
   }
 }

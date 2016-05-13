@@ -4,6 +4,10 @@
 # root
 root: true
 
+# globals
+globals:
+  Promise: true
+
 # code env
 env:
   node: true
@@ -19,7 +23,7 @@ rules:
   camelcase: 2
   radix: 2 # parseInt('100', 10)
   yoda: 2 # 'blue' === sky
-  no-var: 2 # ES6 let & const
+  # no-var: 2 # ES6 let & const
   no-const-assign: 2
   strict: [2, global] # 'use strict'
 
@@ -35,6 +39,6 @@ rules:
   # 有 jsbeautify 保持风格
 
 parserOptions:
-  ecmaVersion: 6
+  ecmaVersion: 5
 
 extends: 'eslint:recommended'
