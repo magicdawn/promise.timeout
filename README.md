@@ -56,7 +56,7 @@ _50.should.equal(20);
 ## See Also
 
 - [promise.map](https://github.com/magicdawn/promise.map)
-- [promise.ify](ttps://github.com/magicdawn/promise.ify)
+- [promise.ify](https://github.com/magicdawn/promise.ify)
 
 ## License
 
