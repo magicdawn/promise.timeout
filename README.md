@@ -52,6 +52,10 @@ _50.should.be.ok();
 _50.should.equal(20);
 ```
 
+## Changelog
+
+[CHANGELOG.md](CHANGELOG.md)
+
 
 ## See Also
 
