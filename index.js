@@ -5,6 +5,7 @@
  */
 
 var fmt = require('util').format;
+var inherits = require('util').inherits;
 
 /**
  * exports
@@ -36,7 +37,10 @@ function promiseTimeout(fn, timeout) {
  */
 
 function TimeoutError(timeout) {
+  Error.call(this);
   this.timeout = timeout;
-  this.message = fmt('timeout of %s ms exceed', timeout);
+  this.message = fmt('timeout of %sms exceed', timeout);
   Error.captureStackTrace(this, TimeoutError);
 }
+
+inherits(TimeoutError, Error);

@@ -33,4 +33,11 @@ describe('simple use', function() {
     _50.should.be.ok();
     _50.should.equal(20);
   });
+
+  it('TimeoutError extends Error', function() {
+    const e = new ptimeout.TimeoutError(10);
+    e.should.be.instanceof(Error);
+    e.timeout.should.equal(10);
+    e.message.should.match(/timeout of 10ms exceed/);
+  });
 });
