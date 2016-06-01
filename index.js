@@ -32,8 +32,8 @@ function promiseTimeout(fn, timeout, cancel) {
     }
 
     return new Promise(function(resolve, reject) {
-      fn.apply(ctx, args).then(resolve, reject);
-      setTimeout(function() {
+      // timeout
+      var timer = setTimeout(function() {
         // reject
         var e = new TimeoutError(timeout);
         reject(e);
@@ -41,6 +41,15 @@ function promiseTimeout(fn, timeout, cancel) {
         // clean up if possible
         cancel && cancelFn && process.nextTick(cancelFn);
       }, timeout);
+
+      // clear
+      fn.apply(ctx, args).then(function(result) {
+        clearTimeout(timer);
+        resolve(result);
+      }, function(err) {
+        clearTimeout(timer);
+        reject(err);
+      });
     });
   };
 }

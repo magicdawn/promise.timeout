@@ -63,4 +63,35 @@ describe('simple use', function() {
       e.should.ok();
     }
   });
+
+  it('should clear the timer', function*() {
+    function test(onCancel) {
+      return new Promise(function(resolve, reject) {
+        const timer = setTimeout(function() {
+          reject(new Error('boom'));
+        }, 20);
+
+        // clean
+        onCancel && onCancel(() => {
+          clearTimeout(timer);
+        });
+      });
+    }
+
+    const test10 = ptimeout(test, 10, true);
+    const test50 = ptimeout(test, 50, true);
+
+    try {
+      yield test10();
+    } catch (e) {
+      e.should.instanceof(ptimeout.TimeoutError);
+    }
+
+    try {
+      yield test50();
+    } catch (e) {
+      e.should.instanceof(Error);
+      e.message.should.equal('boom');
+    }
+  });
 });
