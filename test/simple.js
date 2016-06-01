@@ -40,4 +40,27 @@ describe('simple use', function() {
     e.timeout.should.equal(10);
     e.message.should.match(/timeout of 10ms exceed/);
   });
+
+  it('onCancel works', function*() {
+    // a function will cost 20ms
+    function test(onCancel) {
+      return new Promise(function(resolve, reject) {
+        const timer = setTimeout(function() {
+          resolve(20);
+        }, 20);
+
+        // clean
+        onCancel && onCancel(function() {
+          clearTimeout(timer);
+        });
+      });
+    }
+
+    const test10 = ptimeout(test, 10, true); // enable cancel
+    try {
+      yield test10();
+    } catch (e) {
+      e.should.ok();
+    }
+  });
 });

@@ -18,15 +18,28 @@ module.exports.TimeoutError = TimeoutError;
  * main
  */
 
-function promiseTimeout(fn, timeout) {
+function promiseTimeout(fn, timeout, cancel) {
   return function() {
     var ctx = this;
     var args = [].slice.call(arguments);
+
+    // provide onCancel
+    var cancelFn;
+    if (cancel) {
+      args.push(function onCancel(fn) {
+        cancelFn = fn;
+      });
+    }
+
     return new Promise(function(resolve, reject) {
       fn.apply(ctx, args).then(resolve, reject);
       setTimeout(function() {
+        // reject
         var e = new TimeoutError(timeout);
         reject(e);
+
+        // clean up if possible
+        cancel && cancelFn && process.nextTick(cancelFn);
       }, timeout);
     });
   };
