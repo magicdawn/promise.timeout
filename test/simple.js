@@ -49,8 +49,8 @@ describe('simple use', function() {
           resolve(20);
         }, 20);
 
-        // clean
-        onCancel && onCancel(function() {
+        // custom clean
+        onCancel && onCancel(() => {
           clearTimeout(timer);
         });
       });
