@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.1.0 2016-06-02
+- when not timeout, clear the `reject(TimeoutError)` timer
+
 ## v0.0.3 2016-06-01
 - add `onCancel` to support clean up
 - use esformatter, remove jsbeautify
