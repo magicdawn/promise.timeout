@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.1.1 2016-06-27
+- fix `deps` mistake
+
 ## v0.1.0 2016-06-02
 - when not timeout, clear the `reject(TimeoutError)` timer
 

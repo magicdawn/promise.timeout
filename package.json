@@ -27,9 +27,7 @@
     "eslint": "^2.9.0",
     "istanbul": "^0.4.3",
     "mocha": "^2.4.5",
-    "should": "^8.3.1"
-  },
-  "dependencies": {
+    "should": "^8.3.1",
     "co-mocha": "^1.1.2"
   },
   "files": [
