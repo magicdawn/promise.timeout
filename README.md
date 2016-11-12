@@ -2,7 +2,7 @@
 > add timeout support for async function
 
 [![Build Status](https://img.shields.io/travis/magicdawn/promise.timeout.svg?style=flat-square)](https://travis-ci.org/magicdawn/promise.timeout)
-[![Coverage Status](https://img.shields.io/coveralls/magicdawn/promise.timeout.svg?style=flat-square)](https://coveralls.io/github/magicdawn/promise.timeout?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/magicdawn/promise.timeout.svg?style=flat-square)](https://codecov.io/gh/magicdawn/promise.timeout)
 [![npm version](https://img.shields.io/npm/v/promise.timeout.svg?style=flat-square)](https://www.npmjs.com/package/promise.timeout)
 [![npm downloads](https://img.shields.io/npm/dm/promise.timeout.svg?style=flat-square)](https://www.npmjs.com/package/promise.timeout)
 [![npm license](https://img.shields.io/npm/l/promise.timeout.svg?style=flat-square)](http://magicdawn.mit-license.org)

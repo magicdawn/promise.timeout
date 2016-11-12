@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * module dependencies
+ * Module dependencies
  */
 
 var fmt = require('util').format;
