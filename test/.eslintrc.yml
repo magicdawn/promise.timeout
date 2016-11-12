@@ -1,5 +1,7 @@
 parserOptions:
   ecmaVersion: 6
 
+parser: 'babel-eslint'
+
 rules:
   no-var: 2 # ES6 let & const

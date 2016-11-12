@@ -1,10 +1,8 @@
-'use strict';
-
 const ptimeout = require('../');
 const should = require('should');
 
 describe('simple use', function() {
-  it('it works', function*() {
+  it('it works', async() => {
 
     // a function will cost 20ms
     function test() {
@@ -20,7 +18,7 @@ describe('simple use', function() {
 
     // 10 timeout
     try {
-      yield test10();
+      await test10();
     } catch (e) {
       e.should.be.ok();
       e.should.be.instanceof(ptimeout.TimeoutError);
@@ -29,7 +27,7 @@ describe('simple use', function() {
     }
 
     // 50 ok
-    const _50 = yield test50();
+    const _50 = await test50();
     _50.should.be.ok();
     _50.should.equal(20);
   });
@@ -41,7 +39,7 @@ describe('simple use', function() {
     e.message.should.match(/timeout of 10ms exceed/);
   });
 
-  it('onCancel works', function*() {
+  it('onCancel works', async() => {
     // a function will cost 20ms
     function test(onCancel) {
       return new Promise(function(resolve, reject) {
@@ -58,13 +56,13 @@ describe('simple use', function() {
 
     const test10 = ptimeout(test, 10, true); // enable cancel
     try {
-      yield test10();
+      await test10();
     } catch (e) {
       e.should.ok();
     }
   });
 
-  it('should clear the timer', function*() {
+  it('should clear the timer', async() => {
     function test(onCancel) {
       return new Promise(function(resolve, reject) {
         const timer = setTimeout(function() {
@@ -82,13 +80,13 @@ describe('simple use', function() {
     const test50 = ptimeout(test, 50, true);
 
     try {
-      yield test10();
+      await test10();
     } catch (e) {
       e.should.instanceof(ptimeout.TimeoutError);
     }
 
     try {
-      yield test50();
+      await test50();
     } catch (e) {
       e.should.instanceof(Error);
       e.message.should.equal('boom');
