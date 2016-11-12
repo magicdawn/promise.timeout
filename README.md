@@ -17,10 +17,15 @@ $ npm i promise.timeout --save
 
 ## API
 
+```js
+const ptimeout = require('promise.timeout')
+```
+
 `ptimeout(fn, timeout, cancel)`
 - `fn` the async function
 - `timeout` in ms
 - `cancel` Boolean, whether support onCancel
+
 
 ```js
 var ptimeout = require('promise.timeout');
@@ -39,7 +44,7 @@ const test50 = ptimeout(test, 50);
 
 // 10 timeout
 try {
-  yield test10();
+  await test10();
 } catch (e) {
   e.should.be.ok();
   e.should.be.instanceof(ptimeout.TimeoutError);
@@ -48,7 +53,7 @@ try {
 }
 
 // 50 ok
-const _50 = yield test50();
+const _50 = await test50();
 _50.should.be.ok();
 _50.should.equal(20);
 ```
@@ -77,7 +82,7 @@ function test(onCancel) {
 
 const test10 = ptimeout(test, 10, true); // enable cancel
 try {
-  yield test10();
+  await test10();
 } catch (e) {
   e.should.ok();
 }
