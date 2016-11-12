@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.2 2016-11-12
+- use `async/await` instead of `co-mocha`
+- use `nyc` instead of `istanbul`
+- use `semi: [error, never]` code style
+
 ## v0.1.1 2016-06-27
 - fix `deps` mistake
 
