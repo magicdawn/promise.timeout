@@ -1,4 +1,6 @@
 # promise.timeout
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/magicdawn/promise.timeout.svg)](https://greenkeeper.io/)
 > add timeout support for async function
 
 [![Build Status](https://img.shields.io/travis/magicdawn/promise.timeout.svg?style=flat-square)](https://travis-ci.org/magicdawn/promise.timeout)
