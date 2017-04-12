@@ -1,3 +1,5 @@
+'use strict'
+
 const ptimeout = require('../')
 const should = require('should')
 
