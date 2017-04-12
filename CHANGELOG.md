@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.0 2017-04-12
+
+- back to istanbul, rm `nyc`
+- rm `babel-eslint`, use eslint ecmaVersion = 8
+
 ## v0.1.2 2016-11-12
 - use `async/await` instead of `co-mocha`
 - use `nyc` instead of `istanbul`
