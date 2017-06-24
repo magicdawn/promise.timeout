@@ -25,7 +25,7 @@
   "homepage": "https://github.com/magicdawn/promise.timeout#readme",
   "devDependencies": {
     "codecov": "^2.1.0",
-    "eslint": "^3.19.0",
+    "eslint": "^4.1.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.1.2",
     "should": "^11.1.1"
