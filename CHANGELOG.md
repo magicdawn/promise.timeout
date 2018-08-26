@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.1 2018-08-26
+
+- update deps & clean up code
+- use prettier
+
 ## v0.2.0 2017-04-12
 
 - back to istanbul, rm `nyc`

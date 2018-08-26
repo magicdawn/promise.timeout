@@ -1,28 +1,16 @@
-/**
- * Module dependencies
- */
-
-var fmt = require('util').format
-var inherits = require('util').inherits
-
-/**
- * exports
- */
+const fmt = require('util').format
+const inherits = require('util').inherits
 
 module.exports = promiseTimeout
 module.exports.TimeoutError = TimeoutError
 
-/**
- * main
- */
-
 function promiseTimeout(fn, timeout, cancel) {
   return function() {
-    var ctx = this
-    var args = [].slice.call(arguments)
+    const ctx = this
+    const args = [].slice.call(arguments)
 
     // provide onCancel
-    var cancelFn
+    let cancelFn
     if (cancel) {
       args.push(function onCancel(fn) {
         cancelFn = fn
@@ -31,9 +19,9 @@ function promiseTimeout(fn, timeout, cancel) {
 
     return new Promise(function(resolve, reject) {
       // timeout
-      var timer = setTimeout(function() {
+      const timer = setTimeout(function() {
         // reject
-        var e = new TimeoutError(timeout)
+        const e = new TimeoutError(timeout)
         reject(e)
 
         // clean up if possible
@@ -41,13 +29,16 @@ function promiseTimeout(fn, timeout, cancel) {
       }, timeout)
 
       // clear
-      fn.apply(ctx, args).then(function(result) {
-        clearTimeout(timer)
-        resolve(result)
-      }, function(err) {
-        clearTimeout(timer)
-        reject(err)
-      })
+      fn.apply(ctx, args).then(
+        function(result) {
+          clearTimeout(timer)
+          resolve(result)
+        },
+        function(err) {
+          clearTimeout(timer)
+          reject(err)
+        }
+      )
     })
   }
 }

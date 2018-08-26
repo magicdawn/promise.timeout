@@ -8,7 +8,7 @@
 [![npm license](https://img.shields.io/npm/l/promise.timeout.svg?style=flat-square)](http://magicdawn.mit-license.org)
 
 ## Note
-this is target ES5 environment.
+this is target ES6 environment.
 
 ## Install
 ```

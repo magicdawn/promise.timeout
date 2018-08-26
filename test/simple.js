@@ -1,10 +1,8 @@
-'use strict'
-
 const ptimeout = require('../')
 const should = require('should')
 
 describe('simple use', function() {
-  it('it works', async() => {
+  it('it works', async () => {
     // a function will cost 20ms
     function test() {
       return new Promise(function(resolve, reject) {
@@ -40,7 +38,7 @@ describe('simple use', function() {
     e.message.should.match(/timeout of 10ms exceed/)
   })
 
-  it('onCancel works', async() => {
+  it('onCancel works', async () => {
     // a function will cost 20ms
     function test(onCancel) {
       return new Promise(function(resolve, reject) {
@@ -49,9 +47,10 @@ describe('simple use', function() {
         }, 20)
 
         // custom clean
-        onCancel && onCancel(() => {
-          clearTimeout(timer)
-        })
+        onCancel &&
+          onCancel(() => {
+            clearTimeout(timer)
+          })
       })
     }
 
@@ -63,7 +62,7 @@ describe('simple use', function() {
     }
   })
 
-  it('should clear the timer', async() => {
+  it('should clear the timer', async () => {
     function test(onCancel) {
       return new Promise(function(resolve, reject) {
         const timer = setTimeout(function() {
@@ -71,9 +70,10 @@ describe('simple use', function() {
         }, 20)
 
         // clean
-        onCancel && onCancel(() => {
-          clearTimeout(timer)
-        })
+        onCancel &&
+          onCancel(() => {
+            clearTimeout(timer)
+          })
       })
     }
 
