@@ -28,12 +28,14 @@ function promiseTimeout(fn, timeout, cancel) {
         cancel && cancelFn && process.nextTick(cancelFn)
       }, timeout)
 
-      // clear
-      fn.apply(ctx, args).then(
+      Promise.resolve(fn.apply(ctx, args)).then(
+        // resolve
         function(result) {
           clearTimeout(timer)
           resolve(result)
         },
+
+        // reject
         function(err) {
           clearTimeout(timer)
           reject(err)

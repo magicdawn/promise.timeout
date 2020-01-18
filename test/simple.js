@@ -93,4 +93,11 @@ describe('simple use', function() {
       e.message.should.equal('boom')
     }
   })
+
+  it('none async function works too', async () => {
+    const fn = () => 10
+    const fnWithTimeout = ptimeout(fn, 10, true)
+    const ret = await fnWithTimeout()
+    ret.should.eql(10)
+  })
 })
