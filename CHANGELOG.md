@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.0 2020-01-18
+
+- use `Promise.resolve` to add support none async function in `ptimeout(fn, ...)`
+- add `types/index.d.ts` typescript definition, and use `tsd` to check d.ts
+- use `nyc` insteadof `istanbul`
+
 ## v0.2.1 2018-08-26
 
 - update deps & clean up code
