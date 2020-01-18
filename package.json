@@ -3,6 +3,11 @@
   "version": "0.2.1",
   "description": "add timeout support for async function",
   "main": "index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "index.js",
+    "types/index.d.ts"
+  ],
   "scripts": {
     "test": "mocha",
     "test-cover": "istanbul cover _mocha -- -u exports",
@@ -24,13 +29,11 @@
   },
   "homepage": "https://github.com/magicdawn/promise.timeout#readme",
   "devDependencies": {
-    "codecov": "^3.0.4",
-    "eslint": "^5.4.0",
+    "codecov": "^3.6.1",
+    "eslint": "^6.8.0",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^5.2.0",
-    "should": "^13.2.3"
-  },
-  "files": [
-    "index.js"
-  ]
+    "mocha": "^7.0.0",
+    "should": "^13.2.3",
+    "tsd": "^0.11.0"
+  }
 }
