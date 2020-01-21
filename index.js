@@ -1,13 +1,13 @@
-const fmt = require('util').format
-const inherits = require('util').inherits
+var fmt = require('util').format
+var inherits = require('util').inherits
 
 module.exports = ptimeout
 module.exports.TimeoutError = TimeoutError
 
 function ptimeout(fn, timeout, cancel) {
   return function() {
-    const ctx = this
-    const args = [].slice.call(arguments)
+    var ctx = this
+    var args = [].slice.call(arguments)
 
     // provide onCancel
     let cancelFn
@@ -19,9 +19,9 @@ function ptimeout(fn, timeout, cancel) {
 
     return new Promise(function(resolve, reject) {
       // timeout
-      const timer = setTimeout(function() {
+      var timer = setTimeout(function() {
         // reject
-        const e = new TimeoutError(timeout)
+        var e = new TimeoutError(timeout)
         reject(e)
 
         // clean up if possible

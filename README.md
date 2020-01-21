@@ -18,12 +18,12 @@ $ npm i -S promise.timeout
 
 ## Note
 
-this is target ES6 environment.
+this is target ES5 environment.
 
 ## API
 
 ```js
-const ptimeout = require('promise.timeout')
+var ptimeout = require('promise.timeout')
 ```
 
 `ptimeout(fn, timeout, cancel)`
@@ -44,8 +44,8 @@ function test() {
   })
 }
 
-const test10 = ptimeout(test, 10)
-const test50 = ptimeout(test, 50)
+var test10 = ptimeout(test, 10)
+var test50 = ptimeout(test, 50)
 
 // 10 timeout
 try {
@@ -58,7 +58,7 @@ try {
 }
 
 // 50 ok
-const _50 = await test50()
+var _50 = await test50()
 _50.should.be.ok()
 _50.should.equal(20)
 ```
@@ -74,7 +74,7 @@ var ptimeout = require('promise.timeout')
 // a function will cost 20ms
 function test(onCancel) {
   return new Promise(function(resolve, reject) {
-    const timer = setTimeout(function() {
+    var timer = setTimeout(function() {
       resolve(20)
     }, 20)
 
@@ -86,7 +86,7 @@ function test(onCancel) {
   })
 }
 
-const test10 = ptimeout(test, 10, true) // enable cancel
+var test10 = ptimeout(test, 10, true) // enable cancel
 try {
   await test10()
 } catch (e) {

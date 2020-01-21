@@ -1,5 +1,8 @@
 # root
 root: true
 
+rules:
+  no-var: off
+
 extends:
   - '@magicdawn'
