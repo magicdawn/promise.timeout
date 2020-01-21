@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.0 2020-01-21
+
+- update A lot, code take from promise.x/promise.timeout
+
 ## v0.3.0 2020-01-18
 
 - use `Promise.resolve` to add support none async function in `ptimeout(fn, ...)`
