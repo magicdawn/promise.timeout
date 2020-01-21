@@ -1,6 +1,6 @@
 {
   "name": "promise.timeout",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "add timeout support for async function",
   "main": "index.js",
   "types": "types/index.d.ts",
