@@ -1,10 +1,10 @@
 const fmt = require('util').format
 const inherits = require('util').inherits
 
-module.exports = promiseTimeout
+module.exports = ptimeout
 module.exports.TimeoutError = TimeoutError
 
-function promiseTimeout(fn, timeout, cancel) {
+function ptimeout(fn, timeout, cancel) {
   return function() {
     const ctx = this
     const args = [].slice.call(arguments)
