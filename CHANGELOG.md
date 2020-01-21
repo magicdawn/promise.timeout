@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.1 2020-01-21
+
+- re-target ES5
+
 ## v0.4.0 2020-01-21
 
 - update A lot, code take from promise.x/promise.timeout
