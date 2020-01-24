@@ -76,6 +76,27 @@ try {
 }
 ```
 
+## FAQ
+
+### Q: Why onCancel
+
+### A: Think `onCancel` like the AbortController
+
+with `AbortController` you need to
+
+```js
+function normalFn(a, r, g, s, controller: AbortController) {
+  controller.signal.addEventListener('abort', () => {
+    // cancel operations that starts in `normalFn` body
+  })
+}
+```
+
+- and `ptimeout` will call the `controller.abort()` if any timeout exceeds
+- and with `onCancel`, you provide a cancel operation to ptimeout, ptimeout will call that
+
+That's the same, and I don't want to depend on an extra package [abort-controller](https://github.com/mysticatea/abort-controller)
+
 ## See Also
 
 - [promise.timeout](https://github.com/magicdawn/promise.timeout)
