@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.2 2020-11-25
+
+- fix `index.d.ts`, use ts@4.0 variadic tuple
+- export TimeoutError as class, because usage of `err instanceof ptimeout.TimeoutError`
+
 ## v0.4.1 2020-01-21
 
 - re-target ES5
