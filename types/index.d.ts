@@ -1,15 +1,16 @@
-export type OnCancel = (fn: (...args: any[]) => any) => void
-
 export class TimeoutError extends Error {
   timeout: number
 }
 
-declare function ptimeout<FN>(fn: FN, timeout: number): FN
+export type EnsurePromise<T> = T extends Promise<any> ? T : Promise<T>
 
-declare function ptimeout<T extends unknown[], R>(
-  fn: (...args: [...args: T, onCancel?: OnCancel]) => R,
-  timeout: number,
-  cancel: boolean
-): (...args: T) => R
-
-export default ptimeout
+// with singal
+export default function ptimeout<T extends unknown[], R>(
+  fn: (...args: [...args: T, signal: AbortSignal]) => R,
+  timeout: number
+): (...args: T) => EnsurePromise<R>
+// no singal
+export default function ptimeout<T extends unknown[], R>(
+  fn: (...args: [...args: T]) => R,
+  timeout: number
+): (...args: T) => EnsurePromise<R>

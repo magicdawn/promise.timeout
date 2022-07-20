@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.0 2022-07-20
+
+- use `AbortController` & `AbortSignal` replace `onCancel`
+
 ## v0.4.2 2020-11-25
 
 - fix `index.d.ts`, use ts@4.0 variadic tuple

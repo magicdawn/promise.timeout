@@ -1,12 +1,12 @@
 const ptimeout = require('../')
 const should = require('should')
 
-describe('simple use', function() {
+describe('simple use', function () {
   it('it works', async () => {
     // a function will cost 20ms
     function test() {
-      return new Promise(function(resolve, reject) {
-        setTimeout(function() {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
           resolve(20)
         }, 20)
       })
@@ -31,30 +31,29 @@ describe('simple use', function() {
     _50.should.equal(20)
   })
 
-  it('TimeoutError extends Error', function() {
+  it('TimeoutError extends Error', function () {
     const e = new ptimeout.TimeoutError(10)
     e.should.be.instanceof(Error)
     e.timeout.should.equal(10)
     e.message.should.match(/timeout of 10ms exceed/)
   })
 
-  it('onCancel works', async () => {
+  it('AbortSignal works', async () => {
     // a function will cost 20ms
-    function test(onCancel) {
-      return new Promise(function(resolve, reject) {
-        const timer = setTimeout(function() {
+    function test(signal) {
+      return new Promise(function (resolve, reject) {
+        const timer = setTimeout(function () {
           resolve(20)
         }, 20)
 
         // custom clean
-        onCancel &&
-          onCancel(() => {
-            clearTimeout(timer)
-          })
+        signal.addEventListener('abort', () => {
+          clearTimeout(timer)
+        })
       })
     }
 
-    const test10 = ptimeout(test, 10, true) // enable cancel
+    const test10 = ptimeout(test, 10)
     try {
       await test10()
     } catch (e) {
@@ -63,22 +62,21 @@ describe('simple use', function() {
   })
 
   it('should clear the timer', async () => {
-    function test(onCancel) {
-      return new Promise(function(resolve, reject) {
-        const timer = setTimeout(function() {
+    function test(singal) {
+      return new Promise(function (resolve, reject) {
+        const timer = setTimeout(function () {
           reject(new Error('boom'))
         }, 20)
 
         // clean
-        onCancel &&
-          onCancel(() => {
-            clearTimeout(timer)
-          })
+        singal.addEventListener('abort', () => {
+          clearTimeout(timer)
+        })
       })
     }
 
-    const test10 = ptimeout(test, 10, true)
-    const test50 = ptimeout(test, 50, true)
+    const test10 = ptimeout(test, 10)
+    const test50 = ptimeout(test, 50)
 
     try {
       await test10()
@@ -96,7 +94,7 @@ describe('simple use', function() {
 
   it('none async function works too', async () => {
     const fn = () => 10
-    const fnWithTimeout = ptimeout(fn, 10, true)
+    const fnWithTimeout = ptimeout(fn, 10)
     const ret = await fnWithTimeout()
     ret.should.eql(10)
   })

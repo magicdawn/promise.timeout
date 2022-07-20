@@ -1,42 +1,43 @@
+/* global AbortController: true */
+
 var fmt = require('util').format
-var inherits = require('util').inherits
 
-module.exports = ptimeout
-module.exports.TimeoutError = TimeoutError
+function checkAbortController() {
+  if (!global.AbortController || !global.AbortSignal) {
+    console.error('[promise.timeout] need global AbortController & AbortSingal')
+  }
+}
 
-function ptimeout(fn, timeout, cancel) {
-  return function() {
+function ptimeout(fn, timeout) {
+  return function () {
     var ctx = this
     var args = [].slice.call(arguments)
 
-    // provide onCancel
-    let cancelFn
-    if (cancel) {
-      args.push(function onCancel(fn) {
-        cancelFn = fn
-      })
-    }
+    // provide signal
+    checkAbortController()
+    var controller = new AbortController()
+    args.push(controller.signal)
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       // timeout
-      var timer = setTimeout(function() {
+      var timer = setTimeout(function () {
         // reject
         var e = new TimeoutError(timeout)
         reject(e)
 
-        // clean up if possible
-        cancel && cancelFn && process.nextTick(cancelFn)
+        // abort excuting task
+        controller.abort()
       }, timeout)
 
       Promise.resolve(fn.apply(ctx, args)).then(
         // resolve
-        function(result) {
+        function (result) {
           clearTimeout(timer)
           resolve(result)
         },
 
         // reject
-        function(err) {
+        function (err) {
           clearTimeout(timer)
           reject(err)
         }
@@ -49,11 +50,14 @@ function ptimeout(fn, timeout, cancel) {
  * Error def
  */
 
-function TimeoutError(timeout) {
-  Error.call(this)
-  this.timeout = timeout
-  this.message = fmt('timeout of %sms exceed', timeout)
-  Error.captureStackTrace(this, TimeoutError)
+class TimeoutError extends Error {
+  constructor(timeout) {
+    super()
+    this.timeout = timeout
+    this.message = fmt('timeout of %sms exceed', timeout)
+    Error.captureStackTrace(this, TimeoutError)
+  }
 }
 
-inherits(TimeoutError, Error)
+module.exports = ptimeout
+module.exports.TimeoutError = TimeoutError

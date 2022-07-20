@@ -13,7 +13,8 @@
     "tsd": "tsd",
     "test-cover": "nyc --reporter=lcov --reporter=text mocha",
     "report-cover": "codecov",
-    "gen-readme": "swig render ./readme/readme.md > README.md && prettier --write README.md"
+    "gen-readme": "swig render ./readme/readme.md > README.md && prettier --write README.md",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,7 @@
     "@magicdawn/prettier-config": "latest",
     "codecov": "^3.3.0",
     "eslint": "^6.8.0",
-    "husky": "latest",
+    "husky": "^8.0.0",
     "lint-staged": "latest",
     "mocha": "^6.1.4",
     "nyc": "^14.0.0",
