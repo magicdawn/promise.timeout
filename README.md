@@ -26,19 +26,18 @@ this is target ES5 environment.
 var ptimeout = require('promise.timeout')
 ```
 
-`ptimeout(fn, timeout, cancel)`
+`ptimeout(fn, timeout)`
 
 - `fn` the async function
 - `timeout` in ms
-- `cancel` Boolean, whether support onCancel
 
 ```js
 var ptimeout = require('promise.timeout')
 
 // a function will cost 20ms
 function test() {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
       resolve(20)
     }, 20)
   })
@@ -63,30 +62,29 @@ _50.should.be.ok()
 _50.should.equal(20)
 ```
 
-### onCancel
+### singal
 
-1. pass `cancel = true` to `ptimeout(fn, ms, cancel)`
-2. use `onCancel` para to register clean callback
+ptimeout will provide an extra runtime argument `signal: AbortSignal`, you can use the signal to register abort action.
+when timeout reached, the abort action will be executed
 
 ```js
 var ptimeout = require('promise.timeout')
 
 // a function will cost 20ms
-function test(onCancel) {
-  return new Promise(function(resolve, reject) {
-    var timer = setTimeout(function() {
+function test(signal) {
+  return new Promise(function (resolve, reject) {
+    var timer = setTimeout(function () {
       resolve(20)
     }, 20)
 
-    // custom clean
-    onCancel &&
-      onCancel(() => {
-        clearTimeout(timer)
-      })
+    // clean up
+    signal.addEventListener('abort', () => {
+      clearTimeout(timer)
+    })
   })
 }
 
-var test10 = ptimeout(test, 10, true) // enable cancel
+var test10 = ptimeout(test, 10)
 try {
   await test10()
 } catch (e) {
@@ -96,7 +94,17 @@ try {
 
 ## FAQ
 
-### Q: Why onCancel
+### Q: why move to `AbortController`
+
+### A:
+
+- easy to type, easy to strip signal argument, easy to use with TypeScript
+- AND it's shiped in Node.js https://nodejs.org/api/globals.html#class-abortcontroller
+- for browser, users should consider a polyfill for `AbortController` & `AbortSignal` if not provided nativly
+
+<details><summary>old version use `onCancel` to register clean up action</summary>
+
+### Q: <del>Why onCancel</del>
 
 ### A: Think `onCancel` like the AbortController
 
@@ -114,6 +122,8 @@ function normalFn(a, r, g, s, controller: AbortController) {
 - and with `onCancel`, you provide a cancel operation to ptimeout, ptimeout will call that
 
 That's the same, and I don't want to depend on an extra package [abort-controller](https://github.com/mysticatea/abort-controller)
+
+</details>
 
 ## See Also
 
