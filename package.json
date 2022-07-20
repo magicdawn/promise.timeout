@@ -42,6 +42,7 @@
     "nyc": "^14.0.0",
     "prettier": "latest",
     "should": "^13.2.3",
+    "swig-templates": "^2.0.3",
     "tsd": "^0.11.0"
   },
   "husky": {
