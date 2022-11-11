@@ -9,12 +9,12 @@
     "types/index.d.ts"
   ],
   "scripts": {
-    "test": "mocha",
+    "prepare": "husky install",
+    "test": "jest --coverage && tsd",
     "tsd": "tsd",
-    "test-cover": "nyc --reporter=lcov --reporter=text mocha",
-    "report-cover": "codecov",
-    "gen-readme": "swig render ./readme/readme.md > README.md && prettier --write README.md",
-    "prepare": "husky install"
+    "test:mocha": "mocha",
+    "test:mocha:cover": "nyc --reporter=lcov --reporter=text mocha",
+    "gen-readme": "swig render ./readme/readme.md > README.md && prettier --write README.md"
   },
   "repository": {
     "type": "git",
@@ -32,18 +32,17 @@
   },
   "homepage": "https://github.com/magicdawn/promise.timeout#readme",
   "devDependencies": {
-    "@magicdawn/eslint-config": "latest",
-    "@magicdawn/prettier-config": "latest",
-    "codecov": "^3.3.0",
+    "@magicdawn/eslint-config": "^0.0.6",
+    "@magicdawn/prettier-config": "^0.0.2",
+    "@types/jest": "^29.2.2",
     "eslint": "^6.8.0",
-    "husky": "^8.0.0",
-    "lint-staged": "latest",
-    "mocha": "^6.1.4",
-    "nyc": "^14.0.0",
-    "prettier": "latest",
+    "husky": "^8.0.2",
+    "jest": "^29.3.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "should": "^13.2.3",
     "swig-templates": "^2.0.3",
-    "tsd": "^0.11.0"
+    "tsd": "^0.24.1"
   },
   "husky": {
     "hooks": {

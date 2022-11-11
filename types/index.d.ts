@@ -1,16 +1,18 @@
-export class TimeoutError extends Error {
-  timeout: number
-}
-
-export type EnsurePromise<T> = T extends Promise<any> ? T : Promise<T>
-
 // with singal
-export default function ptimeout<T extends unknown[], R>(
+declare function ptimeout<T extends unknown[], R>(
   fn: (...args: [...args: T, signal: AbortSignal]) => R,
   timeout: number
-): (...args: T) => EnsurePromise<R>
+): (...args: T) => Promise<Awaited<R>>
 // no singal
-export default function ptimeout<T extends unknown[], R>(
+declare function ptimeout<T extends unknown[], R>(
   fn: (...args: [...args: T]) => R,
   timeout: number
-): (...args: T) => EnsurePromise<R>
+): (...args: T) => Promise<Awaited<R>>
+
+declare namespace ptimeout {
+  export class TimeoutError extends Error {
+    timeout: number
+  }
+}
+
+export = ptimeout
