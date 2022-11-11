@@ -13,8 +13,7 @@
     "test": "jest --coverage && tsd",
     "tsd": "tsd",
     "test:mocha": "mocha",
-    "test:mocha:cover": "nyc --reporter=lcov --reporter=text mocha",
-    "gen-readme": "swig render ./readme/readme.md > README.md && prettier --write README.md"
+    "test:mocha:cover": "nyc --reporter=lcov --reporter=text mocha"
   },
   "repository": {
     "type": "git",
