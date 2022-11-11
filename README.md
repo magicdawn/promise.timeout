@@ -18,7 +18,8 @@ $ npm i -S promise.timeout
 
 ## Note
 
-this is target ES5 environment.
+- this module targets ES5 environment.
+- this module require global `AbortController`, Node.js has builtin global since v15
 
 ## API
 
