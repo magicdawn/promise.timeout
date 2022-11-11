@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1 2022-11-11
+
+- remove readme folder from publish
+
 ## v1.1.0 2022-11-11
 
 - use `export =` for dts file, no required `esModuleInterop` & can work in TypeScript ESM environment
