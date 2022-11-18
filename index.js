@@ -3,7 +3,10 @@
 var fmt = require('util').format
 
 function checkAbortController() {
-  if (!global.AbortController || !global.AbortSignal) {
+  if (
+    typeof AbortController === 'undefined' ||
+    typeof AbortSignal === 'undefined'
+  ) {
     console.error('[promise.timeout] need global AbortController & AbortSingal')
   }
 }

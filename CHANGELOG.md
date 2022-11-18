@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.2 2022-11-18
+
+- can not use `global` in browser, use `typeof` to detect `AbortController` & `AbortSignal`
+
 ## v1.1.1 2022-11-11
 
 - remove readme folder from publish
