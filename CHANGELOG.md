@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0 2024-01-24
+
+- rm `util.format` dep, cjs `require('util').format` imports a lot when used in FE project
+- switch to vitest, fix github actions badge
+
 ## v1.1.2 2022-11-18
 
 - can not use `global` in browser, use `typeof` to detect `AbortController` & `AbortSignal`
