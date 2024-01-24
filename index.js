@@ -1,7 +1,3 @@
-/* global AbortController: true */
-
-var fmt = require('util').format
-
 function checkAbortController() {
   if (
     typeof AbortController === 'undefined' ||
@@ -57,7 +53,7 @@ class TimeoutError extends Error {
   constructor(timeout) {
     super()
     this.timeout = timeout
-    this.message = fmt('timeout of %sms exceed', timeout)
+    this.message = `timeout of ${timeout}ms exceed`
     Error.captureStackTrace(this, TimeoutError)
   }
 }
