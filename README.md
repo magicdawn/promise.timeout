@@ -4,7 +4,7 @@
 
 > add timeout support for async function
 
-[![Build Status](https://img.shields.io/travis/magicdawn/promise.timeout.svg?style=flat-square)](https://travis-ci.org/magicdawn/promise.timeout)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/magicdawn/promise.timeout/ci.yml?style=flat-square&branch=main)](https://github.com/magicdawn/promise.timeout/actions/workflows/ci.yml)
 [![Coverage Status](https://img.shields.io/codecov/c/github/magicdawn/promise.timeout.svg?style=flat-square)](https://codecov.io/gh/magicdawn/promise.timeout)
 [![npm version](https://img.shields.io/npm/v/promise.timeout.svg?style=flat-square)](https://www.npmjs.com/package/promise.timeout)
 [![npm downloads](https://img.shields.io/npm/dm/promise.timeout.svg?style=flat-square)](https://www.npmjs.com/package/promise.timeout)
@@ -13,7 +13,7 @@
 ## Install
 
 ```sh
-$ npm i -S promise.timeout
+$ pnpm add promise.timeout
 ```
 
 ## Note
